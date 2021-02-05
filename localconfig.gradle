@@ -1,0 +1,53 @@
+task test22{
+    parseLocalProperties()
+}
+
+Properties loadProperties(String fileName) {
+    File file = rootProject.file(fileName)
+    println("parseLocalProperties start")
+    if (file.exists()) {
+        InputStream inputStream = rootProject.file(fileName).newDataInputStream();
+        Properties properties = new Properties()
+        properties.load(inputStream)
+        return properties
+    }
+    return null
+}
+
+def parseLocalProperties() {
+    File file = rootProject.file('local.properties')
+    println("parseLocalProperties start")
+    if (file.exists()) {
+        InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
+        Properties properties = new Properties()
+        properties.load(inputStream)
+
+        def containsKey = properties.containsKey("packagename")
+        println("parseLocalProperties containsKey is ${containsKey}")
+        if (containsKey) {
+            println 'packageName:' + properties.getProperty("packagename")
+            ext.packagename = properties.getProperty("packagename")
+            println 'packageName:' + project["packagename"]
+        }
+    }
+}
+
+// 设置属性
+def static getValue(Properties properties, String name, Object defValue) {
+    if (properties == null) {
+        return defValue
+    }
+
+    if (properties.containsKey(name)) {
+        String value = properties.getProperty(name)
+        return value
+    }
+    return defValue
+}
+
+// 方法复用
+ext {
+    parseLocalProperties = this.&parseLocalProperties
+    loadProperties = this.&loadProperties
+    getValue = this.&getValue
+}
