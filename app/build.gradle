@@ -31,7 +31,6 @@ if (properties != null) {
     mode = getValue(properties, "mode", "local")
 }
 println("mode is $mode")
-println("packagename is $packagename")
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -47,7 +46,7 @@ dependencies {
     if (mode == "local") {
         implementation 'com.xj.android:anchortask:0.0.1-local'
     } else if (mode == "remote") {
-        implementation 'com.xj.android:anchortask:0.0.1-snapot'
+        implementation 'com.xj.android:anchortask:0.1.0'
     } else {
         implementation project(path: ':library')
     }
