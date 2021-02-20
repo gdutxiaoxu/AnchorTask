@@ -1,8 +1,10 @@
 package com.xj.anchortask
 
 import android.app.Application
-import com.xj.anchortask.library.AnchorTaskDispatcher
+import com.xj.anchortask.library.AnchorProject
+
 import com.xj.anchortask.library.IAnchorCallBack
+import com.xj.anchortask.library.OnProjectExecuteListener
 import com.xj.anchortask.library.log.LogUtils
 
 /**
@@ -16,34 +18,8 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val anchorTask = AnchorTaskTwo()
-        anchorTask.addCallback(object : IAnchorCallBack {
-            override fun onAdd() {
-                com.xj.anchortask.LogUtils.i(TAG, "onAdd: $anchorTask")
-            }
-
-            override fun onRemove() {
-                com.xj.anchortask.LogUtils.i(TAG, "onRemove: $anchorTask")
-            }
-
-            override fun onStart() {
-                com.xj.anchortask.LogUtils.i(TAG, "onStart:$anchorTask ")
-            }
-
-            override fun onFinish() {
-                com.xj.anchortask.LogUtils.i(TAG, "onFinish:$anchorTask ")
-            }
-
-        })
-        AnchorTaskDispatcher.instance.setContext(this).setLogLevel(LogUtils.LogLevel.DEBUG)
-            .addTask(AnchorTaskZero())
-            .addTask(AnchorTaskOne())
-            .addTask(anchorTask)
-            .addTask(AnchorTaskThree())
-            .addTask(AnchorTaskFour())
-            .addTask(AnchorTaskFive())
-            .start()
-            .await()
 
     }
+
+
 }

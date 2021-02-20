@@ -12,6 +12,11 @@ import java.util.concurrent.CountDownLatch
 interface IAnchorTask : IAnchorCallBack {
 
     /**
+     * 获取任务昵称
+     */
+    fun getTaskName(): String
+
+    /**
      * 是否在主线程执行
      */
     fun isRunOnMainThread(): Boolean
@@ -33,11 +38,6 @@ interface IAnchorTask : IAnchorCallBack {
     fun needWait(): Boolean
 
     /**
-     * 当前任务的前置任务，可以用来确定顶点的入度
-     */
-    fun getDependsTaskList(): List<Class<out AnchorTask>>?
-
-    /**
      * 任务被执行的时候回调
      */
     fun run()
@@ -46,24 +46,45 @@ interface IAnchorTask : IAnchorCallBack {
 
 interface IAnchorCallBack {
     fun onAdd()
-    fun onRemove()
     fun onStart()
     fun onFinish()
 }
 
-abstract class AnchorTask : IAnchorTask {
+class SimpleAnchorCallBack : IAnchorCallBack {
+    override fun onAdd() {
+
+    }
+
+
+    override fun onStart() {
+
+    }
+
+    override fun onFinish() {
+
+    }
+
+}
+
+abstract class AnchorTask(private val name: String) : IAnchorTask {
 
     companion object {
         const val TAG = "AnchorTask"
     }
 
-    private val countDownLatch: CountDownLatch = CountDownLatch(getListSize())
+    private lateinit var countDownLatch: CountDownLatch
     private val copyOnWriteArrayList: CopyOnWriteArrayList<IAnchorCallBack> by lazy {
         CopyOnWriteArrayList<IAnchorCallBack>()
     }
 
+    val dependList: MutableList<String> = ArrayList()
+
 
     private fun getListSize() = getDependsTaskList()?.size ?: 0
+
+    override fun getTaskName(): String {
+        return name
+    }
 
     override fun priority(): Int {
         return Process.THREAD_PRIORITY_FOREGROUND
@@ -73,17 +94,29 @@ abstract class AnchorTask : IAnchorTask {
         return true
     }
 
+    fun afterTask(taskName: String) {
+        dependList.add(taskName)
+    }
+
     /**
      * self call,await
      */
     fun await() {
+        tryToInitCountDown()
         countDownLatch.await()
+    }
+
+    private fun tryToInitCountDown() {
+        if (!this::countDownLatch.isInitialized) {
+            countDownLatch = CountDownLatch(dependList.size)
+        }
     }
 
     /**
      * parent call, countDown
      */
     fun countdown() {
+        tryToInitCountDown()
         countDownLatch.countDown()
     }
 
@@ -91,8 +124,8 @@ abstract class AnchorTask : IAnchorTask {
         return false
     }
 
-    override fun getDependsTaskList(): List<Class<out AnchorTask>>? {
-        return null
+    fun getDependsTaskList(): List<String>? {
+        return dependList
     }
 
     @CallSuper
@@ -106,12 +139,6 @@ abstract class AnchorTask : IAnchorTask {
     override fun onStart() {
         copyOnWriteArrayList.forEach {
             it.onStart()
-        }
-    }
-
-    override fun onRemove() {
-        copyOnWriteArrayList.forEach {
-            it.onRemove()
         }
     }
 
@@ -131,5 +158,10 @@ abstract class AnchorTask : IAnchorTask {
         iAnchorCallBack ?: return
         copyOnWriteArrayList.remove(iAnchorCallBack)
     }
+
+    override fun toString(): String {
+        return "AnchorTask(name='$name',dependList is $dependList)"
+    }
+
 
 }

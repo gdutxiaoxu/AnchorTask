@@ -1,12 +1,48 @@
 package com.xj.anchortask
 
 import com.xj.anchortask.library.AnchorTask
+import com.xj.anchortask.library.IAnchorTaskCreator
 
 /**
  * Created by jun xu on 2/1/21.
  */
 
-class AnchorTaskZero : AnchorTask() {
+const val TASK_NAME_ZERO = "zero"
+const val TASK_NAME_ONE = "one"
+const val TASK_NAME_TWO = "two"
+const val TASK_NAME_THREE = "three"
+const val TASK_NAME_FOUR = "four"
+const val TASK_NAME_FIVE = "five"
+
+class ApplicationAnchorTaskCreator : IAnchorTaskCreator {
+    override fun createTask(taskName: String): AnchorTask? {
+        when (taskName) {
+            TASK_NAME_ZERO -> {
+                return AnchorTaskZero()
+            }
+
+            TASK_NAME_ONE -> {
+                return AnchorTaskOne()
+            }
+            TASK_NAME_TWO -> {
+                return AnchorTaskTwo()
+            }
+            TASK_NAME_THREE -> {
+                return AnchorTaskThree()
+            }
+            TASK_NAME_FOUR -> {
+                return AnchorTaskFour()
+            }
+            TASK_NAME_FIVE -> {
+                return AnchorTaskFive()
+            }
+        }
+        return null
+    }
+
+}
+
+class AnchorTaskZero() : AnchorTask(TASK_NAME_ZERO) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -23,7 +59,7 @@ class AnchorTaskZero : AnchorTask() {
     }
 }
 
-class AnchorTaskOne : AnchorTask() {
+class AnchorTaskOne : AnchorTask(TASK_NAME_ONE) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -41,7 +77,7 @@ class AnchorTaskOne : AnchorTask() {
 
 }
 
-class AnchorTaskTwo : AnchorTask() {
+class AnchorTaskTwo : AnchorTask(TASK_NAME_TWO) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -59,7 +95,7 @@ class AnchorTaskTwo : AnchorTask() {
 
 }
 
-class AnchorTaskThree : AnchorTask() {
+class AnchorTaskThree : AnchorTask(TASK_NAME_THREE) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -75,16 +111,10 @@ class AnchorTaskThree : AnchorTask() {
         )
     }
 
-    override fun getDependsTaskList(): List<Class<out AnchorTask>>? {
-        return ArrayList<Class<out AnchorTask>>().apply {
-            add(AnchorTaskZero::class.java)
-            add(AnchorTaskOne::class.java)
-        }
-    }
 }
 
 
-class AnchorTaskFour : AnchorTask() {
+class AnchorTaskFour : AnchorTask(TASK_NAME_FOUR) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -100,15 +130,9 @@ class AnchorTaskFour : AnchorTask() {
         )
     }
 
-    override fun getDependsTaskList(): List<Class<out AnchorTask>>? {
-        return ArrayList<Class<out AnchorTask>>().apply {
-            add(AnchorTaskOne::class.java)
-            add(AnchorTaskTwo::class.java)
-        }
-    }
 }
 
-class AnchorTaskFive : AnchorTask() {
+class AnchorTaskFive : AnchorTask(TASK_NAME_FIVE) {
     override fun isRunOnMainThread(): Boolean {
         return false
     }
@@ -124,36 +148,8 @@ class AnchorTaskFive : AnchorTask() {
         )
     }
 
-    override fun getDependsTaskList(): List<Class<out AnchorTask>>? {
-        return ArrayList<Class<out AnchorTask>>().apply {
-            add(AnchorTaskThree::class.java)
-            add(AnchorTaskFour::class.java)
-        }
-    }
-}
-
-
-class AnchorTaskB : AnchorTask() {
-    override fun isRunOnMainThread(): Boolean {
-        return false
-    }
-
-    override fun run() {
-        val start = System.currentTimeMillis()
-        try {
-            Thread.sleep(300)
-        } catch (e: Exception) {
-        }
-        com.xj.anchortask.library.log.LogUtils.i(
-            TAG, "AnchorTaskOne: " + (System.currentTimeMillis() - start)
-        )
-    }
-
-    override fun getDependsTaskList(): List<Class<out AnchorTask>>? {
-        return ArrayList<Class<out AnchorTask>>().apply {
-            add(AnchorTaskOne::class.java)
-        }
-    }
 
 }
+
+
 

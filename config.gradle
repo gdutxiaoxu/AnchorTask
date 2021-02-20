@@ -1,0 +1,14 @@
+ext {
+    // Sdk and tools
+    anchorTaskPublicVersion = '1.0.0'
+    anchorTaskVersion = anchorTaskPublicVersion
+
+
+    dep = [
+            androidPlugin: 'com.android.tools.build:gradle:2.1.3',
+
+
+    ]
+
+    isCi = "true".equals(System.getenv('CI'))
+}

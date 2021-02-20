@@ -12,7 +12,7 @@ uploadArchives {
         repository(url: uri('../repository'))
         pom.groupId = "com.xj.android"// 唯一标识（通常为模块包名，也可以任意）
         pom.artifactId = "anchortask" // 项目名称（通常为类库模块名称，也可以任意）
-        pom.version = "0.0.1-local" // 版本号
+        pom.version = "${anchorTaskPublicVersion}-local" // 版本号
     }
 }
 
@@ -21,7 +21,7 @@ publish {
     userOrg = 'xujun94'
     groupId = 'com.xj.android'
     artifactId = 'anchortask'
-    publishVersion = '0.1.0'
+    publishVersion = "${anchorTaskPublicVersion}"
     desc = 'anchortask'
     website = 'https://github.com/gdutxiaoxu/anchortask'
 }
