@@ -16,7 +16,7 @@
 
 
 ```
-implementation 'com.xj.android:anchortask:0.1.0'
+implementation 'com.xj.android:anchortask:1.0.0'
 ```
 
 最新的版本号可以看这里 [lastedt version](https://dl.bintray.com/xujun94/maven/com/xj/android/anchortask/)
