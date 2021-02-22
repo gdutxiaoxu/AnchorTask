@@ -23,13 +23,26 @@ implementation 'com.xj.android:anchortask:1.0.0'
 
 ## 具体使用文档
 
+### 有向无环图的实现
+
+[Android 启动优化（一） - 有向无环图
+](https://juejin.cn/post/6926794003794903048)
+
+[Android 启动优化（二） - 拓扑排序的原理以及解题思路](https://juejin.cn/post/6930805971673415694)
+
+
 ### 0.1.0 版本
 
 0.1.0 版本使用说明见这里 [AnchorTask 0.1.0 版本使用说明](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-0.1.0-%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)， 0.1.0 版本实现借鉴了 [android-startup](https://github.com/idisfkj/android-startup)
 
+[AnchorTask 0.1.0 原理
+](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-0.1.0-%E5%8E%9F%E7%90%86)
+
 ###  1.0.0 版本
 
 [AnchorTask 1.0.0 版本使用说明](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-1.0.0-%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)，参考了阿里 [alpha](https://github.com/alibaba/alpha)
+
+[AnchorTask-1.0.0-原理说明](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-1.0.0-%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E)
 
 ### 两个版本之间区别
 
