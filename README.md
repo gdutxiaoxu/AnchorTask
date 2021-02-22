@@ -39,7 +39,7 @@ implementation 'com.xj.android:anchortask:1.0.0'
 3. 1.0.0 版本新增 `OnGetMonitorRecordCallback` 监听，方便统计各个任务的耗时
 
 
-**如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要跟新 Android 技术，算法，职场相关的。**
+**如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要更新 Android 技术，算法，职场相关的。**
 
 ![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/01/qrcode_for_gh_f0b7a2d93f70_430%20(2).jpg)
 
