@@ -33,7 +33,7 @@ implementation 'com.xj.android:anchortask:1.0.0'
 
 ### 0.1.0 版本
 
-0.1.0 版本使用说明见这里 [AnchorTask 0.1.0 版本使用说明](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-0.1.0-%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)， 0.1.0 版本实现借鉴了 [android-startup](https://github.com/idisfkj/android-startup)
+0.1.0 版本使用说明见这里 [AnchorTask 0.1.0 版本使用说明](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-0.1.0-%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)， 0.1.0 版本实现借鉴了 [android-startup](https://github.com/idisfkj/android-startup)，[AppStartFaster](https://github.com/NoEndToLF/AppStartFaster)
 
 [AnchorTask 0.1.0 原理
 ](https://github.com/gdutxiaoxu/AnchorTask/wiki/AnchorTask-0.1.0-%E5%8E%9F%E7%90%86)
@@ -63,3 +63,6 @@ implementation 'com.xj.android:anchortask:1.0.0'
 [android-startup](https://github.com/idisfkj/android-startup)
 
 [alpha](https://github.com/alibaba/alpha)
+
+[AppStartFaster](https://github.com/NoEndToLF/AppStartFaster)
+
