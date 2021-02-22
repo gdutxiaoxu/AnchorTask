@@ -58,7 +58,7 @@ implementation 'com.xj.android:anchortask:1.0.0'
 
 ## 特别鸣谢
 
-在实现这个开源框架的时候，借鉴了以下两个框架的思想。android-startup 主要是通过 ClassName 找到相应的 Task，而阿里 alpha 是通过 taskName 找到相应的 Task，并且需要指定 ITaskCreator。两种方式各有优缺点，没有优劣之说，具体看使用场景。
+在实现这个开源框架的时候，借鉴了以下开源框架的思想。AppStartFaster 主要是通过 ClassName 找到相应的 Task，而阿里 alpha 是通过 taskName 找到相应的 Task，并且需要指定 ITaskCreator。两种方式各有优缺点，没有优劣之说，具体看使用场景。
 
 [android-startup](https://github.com/idisfkj/android-startup)
 
