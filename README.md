@@ -54,7 +54,7 @@ implementation 'com.xj.android:anchortask:1.0.0'
 
 **如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要更新 Android 技术，算法，职场相关的。**
 
-![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/01/qrcode_for_gh_f0b7a2d93f70_430%20(2).jpg)
+![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/02/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BE%90%E5%85%AC%20(1).png)
 
 ## 特别鸣谢
 
