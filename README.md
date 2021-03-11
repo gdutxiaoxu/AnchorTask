@@ -5,7 +5,7 @@
 > 我的掘金：https://juejin.im/user/2207475076966584  <br>
 > github: https://github.com/gdutxiaoxu/  <br>
 > **微信公众号：程序员徐公(stormjun94)**  <br>
-> 知乎：https://www.zhihu.com/people/xujun94  <br>
+
 
 
 
