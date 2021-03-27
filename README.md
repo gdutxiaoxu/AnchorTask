@@ -1,12 +1,14 @@
 #  AnchorTask
-锚点任务，可以用来解决多线程加载任务依赖的问题。实现原理是使用有向无环图，常见的，比如 Android 启动优化，通常会进行多线程异步加载
 
-> 我的 CSDN 博客:https://blog.csdn.net/gdutxiaoxu <br>
-> 我的掘金：https://juejin.im/user/2207475076966584  <br>
-> github: https://github.com/gdutxiaoxu/  <br>
-> **微信公众号：程序员徐公(stormjun94)**  <br>
+锚点任务，可以用来解决多线程加载任务依赖的问题。实现原理是使用有向无环图，常见的，比如 Android 启动优化，通常会进行多线程异步加载。
 
 
+推荐理由：
+1. **这几篇文章从 0 到 1，讲解 DAG 有向无环图是怎么实现的，以及在 Android 启动优化的应用**。
+2. **现在挺多文章一谈到启动优化，动不动就聊拓扑结构，这篇文章从数据结构到算法、到设计都给大家说清楚了，开源项目也有非常强的借鉴意义**
+
+
+![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/02/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BE%90%E5%85%AC%20(1).png)
 
 
 
