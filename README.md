@@ -3,9 +3,6 @@
 > github: https://github.com/gdutxiaoxu/  <br>
 > 微信公众号：程序员徐公(stormjun94)  <br>
 
-**如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要更新 Android 技术，算法，职场相关的。**
-
-![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/02/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BE%90%E5%85%AC%20(1).png)
 
 
 #  AnchorTask
@@ -84,3 +81,25 @@ AnchorTask 的原理不复杂，本质是有向无环图与多线程知识的结
 
 [AppStartFaster](https://github.com/NoEndToLF/AppStartFaster)
 
+# 系列文章
+
+这几篇文章从 0 到 1，讲解 DAG 有向无环图是怎么实现的，以及在 Android 启动优化的应用。
+
+**推荐理由：现在挺多文章一谈到启动优化，动不动就聊拓扑结构，这篇文章从数据结构到算法、到设计都给大家说清楚了，开源项目也有非常强的借鉴意义。**
+
+[Android 启动优化（一） - 有向无环图
+](https://juejin.cn/post/6926794003794903048)
+
+[Android 启动优化（二） - 拓扑排序的原理以及解题思路](https://juejin.cn/post/6930805971673415694)
+
+[Android 启动优化（三） - AnchorTask 使用说明 ](https://juejin.cn/post/6931903136256753672)
+
+[Android 启动优化（四）- 手把手教你实现 AnchorTask](https://juejin.cn/post/6931905215733956616)
+
+[Android 启动优化（五）- AnchorTask 1.0.0 版本更新了](https://juejin.cn/post/6935375820001116196)
+
+[Android 启动优化（六）- 深入理解布局优化](https://juejin.cn/post/6946167486442110984)
+
+**如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要更新 Android 技术，算法，职场相关的。**
+
+![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/02/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BE%90%E5%85%AC%20(1).png)
