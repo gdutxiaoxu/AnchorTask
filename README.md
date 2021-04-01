@@ -1,7 +1,7 @@
 > 我的 CSDN 博客:https://blog.csdn.net/gdutxiaoxu <br>
 > 我的掘金：https://juejin.im/user/2207475076966584  <br>
 > github: https://github.com/gdutxiaoxu/  <br>
-> 微信公众号：程序员徐公(stormjun94)  <br>
+> 微信公众号：程序员徐公  <br>
 
 
 
