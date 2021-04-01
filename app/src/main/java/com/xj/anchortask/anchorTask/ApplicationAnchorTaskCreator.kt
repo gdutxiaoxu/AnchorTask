@@ -1,5 +1,6 @@
-package com.xj.anchortask
+package com.xj.anchortask.anchorTask
 
+import com.xj.anchortask.LogUtils
 import com.xj.anchortask.library.AnchorTask
 import com.xj.anchortask.library.IAnchorTaskCreator
 

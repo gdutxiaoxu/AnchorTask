@@ -1,59 +1,54 @@
 package com.xj.anchortask
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.xj.anchortask.library.OnProjectExecuteListener
-import com.xj.anchortask.library.monitor.OnGetMonitorRecordCallback
+import com.xj.anchortask.anchorTask.AnchorTaskTestActivity
+import com.xj.anchortask.asyncInflate.page.AsyncUtils.isHomeFragmentOpen
+import com.xj.anchortask.viewStub.ViewStubDemoActivity
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sb2 = StringBuilder()
-        text2.text = "正在执行中"
-        btn_execute.setOnClickListener {
-            sb2.clear()
-            text2.text = "正在执行中"
-            try {
-                TestTaskUtils.executeTask(this, object : OnProjectExecuteListener {
-                    val sb = StringBuffer()
-                    override fun onProjectStart() {
-                        if (sb.length > 0) {
-                            sb.delete(0, sb.length)
-                        }
+        btn_view_stub.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ViewStubDemoActivity::class.java))
+        }
 
-                    }
+        btn_anchortask.setOnClickListener {
+            startActivity(Intent(this@MainActivity, AnchorTaskTestActivity::class.java))
+        }
 
-                    override fun onTaskFinish(taskName: String) {
-                        sb.append("task $taskName execute finish \n")
-                    }
+        val isOpen = isHomeFragmentOpen()
+        updateText(isOpen)
+        switch_async.isChecked = isOpen
 
-                    override fun onProjectFinish() {
-                        text.post {
-                            text.setText(sb.toString())
-                        }
-                    }
+        ll_switch.setOnClickListener {
+            val b = !switch_async.isChecked
+            updateChecked(b)
+        }
 
-                }, object : OnGetMonitorRecordCallback {
+        switch_async.setOnCheckedChangeListener { buttonView, isChecked ->
+            updateChecked(isChecked)
+        }
+    }
+
+    private fun updateChecked(b: Boolean) {
+        updateText(b)
+        switch_async.isChecked = b
+        getSP("async_config").spApplyBoolean("home_fragment_switch", b)
+    }
 
 
-                    override fun onGetTaskExecuteRecord(result: Map<String?, Long?>?) {
-                        result?.entries?.iterator()?.forEach {
-                            sb2.append(it.key).append("执行耗时").append(it.value).append("毫秒\n")
-                        }
-                        text2.text = sb2.toString()
-                    }
-
-                    override fun onGetProjectExecuteTime(costTime: Long) {
-                        sb2.append("总共执行耗时").append(costTime).append("毫秒\n")
-                    }
-
-                })
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
+    private fun updateText(b: Boolean) {
+        if (b) {
+            tv_asnyc_text.setText("首页 Fragment 开启异步加载")
+        } else {
+            tv_asnyc_text.setText("首页 Fragment 关闭异步加载")
         }
     }
 }

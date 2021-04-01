@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <Button
-        android:id="@+id/btn_execute"
+        android:id="@+id/btn_view_stub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开始执行"
+        android:text="跳转 ViewStub"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_anchortask"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_execute" />
+        android:text="跳转 AnchorTask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_view_stub" />
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_switch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Hello World!"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_asnyc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页 Fragment 开启预加载" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_async"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/async_fragment"
+        android:name="com.xj.anchortask.asyncInflate.page.AsyncFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </fragment>
+
+
+</LinearLayout>

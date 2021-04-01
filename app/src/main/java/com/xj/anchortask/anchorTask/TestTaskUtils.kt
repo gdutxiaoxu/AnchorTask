@@ -1,8 +1,10 @@
-package com.xj.anchortask
+package com.xj.anchortask.anchorTask
 
 import android.content.Context
+import com.xj.anchortask.MyApplication
 import com.xj.anchortask.library.AnchorProject
 import com.xj.anchortask.library.OnProjectExecuteListener
+import com.xj.anchortask.library.TaskExecutorManager
 import com.xj.anchortask.library.log.LogUtils
 import com.xj.anchortask.library.monitor.OnGetMonitorRecordCallback
 
@@ -22,13 +24,26 @@ object TestTaskUtils {
                 .addTask(TASK_NAME_ZERO)
                 .addTask(TASK_NAME_ONE)
                 .addTask(TASK_NAME_TWO)
-                .addTask(TASK_NAME_THREE).afterTask(TASK_NAME_ZERO, TASK_NAME_ONE)
-                .addTask(TASK_NAME_FOUR).afterTask(TASK_NAME_ONE, TASK_NAME_TWO)
-                .addTask(TASK_NAME_FIVE).afterTask(TASK_NAME_THREE, TASK_NAME_FOUR)
+                .addTask(TASK_NAME_THREE).afterTask(
+                    TASK_NAME_ZERO,
+                    TASK_NAME_ONE
+                )
+                .addTask(TASK_NAME_FOUR).afterTask(
+                    TASK_NAME_ONE,
+                    TASK_NAME_TWO
+                )
+                .addTask(TASK_NAME_FIVE).afterTask(
+                    TASK_NAME_THREE,
+                    TASK_NAME_FOUR
+                )
+                .setThreadPoolExecutor(TaskExecutorManager.instance.cpuThreadPoolExecutor)
                 .build()
         project.addListener(object : OnProjectExecuteListener {
             override fun onProjectStart() {
-                com.xj.anchortask.LogUtils.i(MyApplication.TAG, "onProjectStart ")
+                com.xj.anchortask.LogUtils.i(
+                    MyApplication.TAG,
+                    "onProjectStart "
+                )
             }
 
             override fun onTaskFinish(taskName: String) {
@@ -39,7 +54,10 @@ object TestTaskUtils {
             }
 
             override fun onProjectFinish() {
-                com.xj.anchortask.LogUtils.i(MyApplication.TAG, "onProjectFinish ")
+                com.xj.anchortask.LogUtils.i(
+                    MyApplication.TAG,
+                    "onProjectFinish "
+                )
             }
 
         })
@@ -56,6 +74,7 @@ object TestTaskUtils {
             }
 
         }
+
         project.start().await()
     }
 }
