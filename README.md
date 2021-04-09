@@ -87,19 +87,18 @@ AnchorTask 的原理不复杂，本质是有向无环图与多线程知识的结
 
 **推荐理由：现在挺多文章一谈到启动优化，动不动就聊拓扑结构，这篇文章从数据结构到算法、到设计都给大家说清楚了，开源项目也有非常强的借鉴意义。**
 
-[Android 启动优化（一） - 有向无环图
-](https://juejin.cn/post/6926794003794903048)
+[Android 启动优化（一） - 有向无环图]( https://mp.weixin.qq.com/s/xWYe-uxgXTPuitYcLgXYNg)
 
-[Android 启动优化（二） - 拓扑排序的原理以及解题思路](https://juejin.cn/post/6930805971673415694)
+[Android 启动优化（二） - 拓扑排序的原理以及解题思路]( https://mp.weixin.qq.com/s/ShfxD_Z7M_NuWYNodn-vqA)
 
-[Android 启动优化（三） - AnchorTask 使用说明 ](https://juejin.cn/post/6931903136256753672)
+[Android 启动优化（三）- AnchorTask 开源了]( https://mp.weixin.qq.com/s/YRUpf9jKEwIHV0A4FqltXg)
 
-[Android 启动优化（四）- 手把手教你实现 AnchorTask](https://juejin.cn/post/6931905215733956616)
+[Android 启动优化（四）- AnchorTask 是怎么实现的](https://mp.weixin.qq.com/s/6RKco9JTm6ZrFyw99k9Rlg)
 
-[Android 启动优化（五）- AnchorTask 1.0.0 版本更新了](https://juejin.cn/post/6935375820001116196)
+[Android 启动优化（五）- AnchorTask 1.0.0 版本正式发布了]( https://mp.weixin.qq.com/s/0MsJa0ZepWkPUs-ymnVb-w)
 
-[Android 启动优化（六）- 深入理解布局优化](https://juejin.cn/post/6946167486442110984)
+[Android 启动优化（六）- 深入理解布局优化](https://mp.weixin.qq.com/s/7_dQd2wGZYKWf9kHNlv2fg)
 
 **如果觉得对你有所帮助的，可以关注我的微信公众号，程序员徐公。主要更新 Android 技术，算法，职场相关的。**
 
-![](https://gitee.com/gdutxiaoxu/blog-picture/raw/master/21/02/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BE%90%E5%85%AC%20(1).png)
+![](https://raw.githubusercontent.com/gdutxiaoxu/blog_pic/master/21/0120210409172003.png)
