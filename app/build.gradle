@@ -57,7 +57,7 @@ dependencies {
     } else if (mode == "remote") {
         implementation "com.xj.android:anchortask:${anchorTaskVersion}"
     } else {
-        implementation project(path: ':library')
+        implementation project(path: ':anchortasklibrary')
     }
 
 

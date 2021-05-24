@@ -47,6 +47,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        kotlinOptions.freeCompilerArgs += ['-module-name', "com.xj.android.anchortask"]
+    }
+
 }
 
 dependencies {
