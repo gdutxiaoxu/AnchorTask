@@ -8,7 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 class ViewStubTaskManager private constructor(val decorView: View) : Runnable {
 
     private var iViewStubTask: IViewStubTask? = null
-
+    
     companion object {
 
         const val TAG = "ViewStubTaskManager"

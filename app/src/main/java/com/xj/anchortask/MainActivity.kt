@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xj.anchortask.anchorTask.AnchorTaskTestActivity
 import com.xj.anchortask.asyncInflate.page.AsyncUtils.isHomeFragmentOpen
+import com.xj.anchortask.flowlayout.FlowLayoutDemo
 import com.xj.anchortask.viewStub.ViewStubDemoActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         btn_anchortask.setOnClickListener {
             startActivity(Intent(this@MainActivity, AnchorTaskTestActivity::class.java))
         }
+
+        btn_flow_layout_demo.setOnClickListener {
+            startActivity(Intent(this@MainActivity, FlowLayoutDemo::class.java))
+        }
+
 
         val isOpen = isHomeFragmentOpen()
         updateText(isOpen)

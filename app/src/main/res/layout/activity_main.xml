@@ -23,6 +23,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_view_stub" />
 
+    <Button
+        android:id="@+id/btn_flow_layout_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转 Flow Layout Demo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_view_stub" />
+
     <LinearLayout
         android:id="@+id/ll_switch"
         android:layout_width="match_parent"

@@ -75,6 +75,6 @@ object TestTaskUtils {
 
         }
 
-        project.start().await()
+        project.start().await(1000)
     }
 }
