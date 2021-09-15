@@ -216,7 +216,18 @@ class AnchorProject private constructor(val builder: Builder) {
 
         }
 
-        private fun addTask(anchorTask: AnchorTask): Builder {
+        fun afterTask(vararg anchorTasks: AnchorTask): Builder {
+            cacheTask ?: let {
+                throw AnchorTaskException("should be call addTask first")
+            }
+            anchorTasks.forEach {
+                cacheTask?.afterTask(it.getTaskName())
+            }
+
+            return this
+        }
+
+        fun addTask(anchorTask: AnchorTask): Builder {
             cacheTask = anchorTask
             list.add(anchorTask)
             anchorTask.onAdd()
