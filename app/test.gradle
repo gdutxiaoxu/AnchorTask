@@ -1,0 +1,3 @@
+task myTask1 {
+    println "configure task1"
+}

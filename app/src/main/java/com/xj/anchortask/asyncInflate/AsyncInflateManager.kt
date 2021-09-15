@@ -21,17 +21,32 @@ import java.util.concurrent.*
 class AsyncInflateManager private constructor() {
 
     private val mInflateMap //保存inflateKey以及InflateItem，里面包含所有要进行inflate的任务
-            : ConcurrentHashMap<String, AsyncInflateItem?>
-    private val mInflateLatchMap: ConcurrentHashMap<String, CountDownLatch>
-    private val mThreadPool //用来进行inflate工作的线程池
-            : ExecutorService
+            : ConcurrentHashMap<String, AsyncInflateItem?> = ConcurrentHashMap()
+    private val mInflateLatchMap: ConcurrentHashMap<String, CountDownLatch> = ConcurrentHashMap()
 
     companion object {
         private const val TAG = "AsyncInflateManager"
+        private val cpuCount = Runtime.getRuntime().availableProcessors()
+        val threadPool = ThreadPoolExecutor(
+            cpuCount,
+            cpuCount * 2,
+            5,
+            TimeUnit.SECONDS,
+            LinkedBlockingDeque()
+        ).apply {
+            allowCoreThreadTimeOut(true)
+        }
 
         @JvmStatic
-        val instance: AsyncInflateManager by lazy {
+        val instance by lazy {
             AsyncInflateManager()
+        }
+
+        /**
+         * 空方法，为了可以提前加载 AsyncInflateManager，并初始化 mThreadPool
+         */
+        fun init() {
+
         }
     }
 
@@ -73,12 +88,15 @@ class AsyncInflateManager private constructor() {
                     } catch (e: InterruptedException) {
                         Log.e(TAG, e.message, e)
                     }
-                    removeInflateKey(item)
-                    if (resultView != null) {
+
+                    val inflatedView = item.inflatedView
+                    if (inflatedView != null) {
+                        removeInflateKey(item)
                         Log.i(TAG, "getInflatedView from OtherThread: inflateKey is $inflateKey")
-                        replaceContextForView(resultView, context)
-                        return resultView
+                        replaceContextForView(inflatedView, context)
+                        return inflatedView
                     }
+
                 }
 
                 //如果还没开始inflate，则设置为false，UI线程进行inflate
@@ -91,8 +109,8 @@ class AsyncInflateManager private constructor() {
     }
 
     /**
-     * inflater初始化时是传进来的application，inflate出来的view的context没法用来startActivity，
-     * 因此用MutableContextWrapper进行包装，后续进行替换
+     * 如果  inflater初始化时是传进来的application，inflate出来的 view 的 context 没法用来 startActivity，
+     * 因此用 MutableContextWrapper 进行包装，后续进行替换
      */
     private fun replaceContextForView(
         inflatedView: View?,
@@ -107,7 +125,7 @@ class AsyncInflateManager private constructor() {
         }
     }
 
-    @UiThread
+
     fun asyncInflate(
         context: Context,
         vararg items: AsyncInflateItem?
@@ -123,6 +141,15 @@ class AsyncInflateManager private constructor() {
 
     }
 
+    fun cancel() {
+
+    }
+
+    fun remove(inflateKey: String) {
+        mInflateMap.remove(inflateKey)
+        mInflateLatchMap.remove(inflateKey)
+    }
+
     private fun onAsyncInflateReady(item: AsyncInflateItem) {}
 
     private fun onAsyncInflateStart(item: AsyncInflateItem) {}
@@ -133,6 +160,11 @@ class AsyncInflateManager private constructor() {
         latch?.countDown()
         if (success && item.callback != null) {
             removeInflateKey(item)
+
+            if (item.isCancelled()) { // 已经取消了，不再回调
+                return
+            }
+
             ThreadUtils.runOnUiThread { item.callback?.onInflateFinished(item) }
         }
     }
@@ -145,13 +177,18 @@ class AsyncInflateManager private constructor() {
         context: Context,
         item: AsyncInflateItem
     ) {
-        mThreadPool.execute {
+        threadPool.execute {
             if (!item.isInflating() && !item.isCancelled()) {
                 try {
                     onAsyncInflateStart(item)
+                    item.setInflating(true)
+                    mInflateLatchMap[item.inflateKey] = CountDownLatch(1)
+                    val currentTimeMillis = System.currentTimeMillis()
                     item.inflatedView =
                         BasicInflater(context).inflate(item.layoutResId, item.parent, false)
                     onAsyncInflateEnd(item, true)
+                    val l = System.currentTimeMillis() - currentTimeMillis
+                    Log.i(TAG, "inflateWithThreadPool: inflateKey is ${item.inflateKey}, time is ${l}")
                 } catch (e: RuntimeException) {
                     Log.e(
                         TAG,
@@ -167,7 +204,7 @@ class AsyncInflateManager private constructor() {
     /**
      * copy from AsyncLayoutInflater - actual inflater
      */
-    private class BasicInflater internal constructor(context: Context?) :
+    private class BasicInflater(context: Context?) :
         LayoutInflater(context) {
         override fun cloneInContext(newContext: Context): LayoutInflater {
             return BasicInflater(newContext)
@@ -194,19 +231,5 @@ class AsyncInflateManager private constructor() {
             private val sClassPrefixList =
                 arrayOf("android.widget.", "android.webkit.", "android.app.")
         }
-    }
-
-
-    init {
-        mThreadPool = ThreadPoolExecutor(
-            4,
-            4,
-            0,
-            TimeUnit.MILLISECONDS,
-            LinkedBlockingDeque()
-        )
-        mInflateMap = ConcurrentHashMap()
-        mInflateLatchMap =
-            ConcurrentHashMap()
     }
 }

@@ -13,8 +13,6 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -46,6 +44,7 @@ dependencies {
 
     implementation "androidx.startup:startup-runtime:1.0.0"
     implementation 'androidx.work:work-runtime:2.3.4'
+    implementation 'com.google.android.material:material:1.4.0'
 
 
     testImplementation 'junit:junit:4.12'

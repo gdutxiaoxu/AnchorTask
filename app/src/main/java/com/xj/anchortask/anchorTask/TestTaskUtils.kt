@@ -77,4 +77,76 @@ object TestTaskUtils {
 
         project.start().await(1000)
     }
+
+    fun executeTask2(
+        context: Context,
+        projectExecuteListener: OnProjectExecuteListener? = null,
+        onGetMonitorRecordCallback: OnGetMonitorRecordCallback? = null
+    ) {
+
+        val anchorTaskZero = AnchorTaskZero()
+        val anchorTaskOne = AnchorTaskOne()
+        val anchorTaskTwo = AnchorTaskTwo()
+        val anchorTaskThree = AnchorTaskThree()
+        val anchorTaskFour = AnchorTaskFour()
+        val anchorTaskFive = AnchorTaskFive()
+        val project =
+            AnchorProject.Builder().setContext(context).setLogLevel(LogUtils.LogLevel.DEBUG)
+                .setAnchorTaskCreator(ApplicationAnchorTaskCreator())
+                .addTask(anchorTaskZero)
+                .addTask(anchorTaskOne)
+                .addTask(anchorTaskTwo)
+                .addTask(anchorTaskThree).afterTask(
+                    anchorTaskZero,
+                    anchorTaskOne
+                )
+                .addTask(TASK_NAME_FOUR).afterTask(
+                    anchorTaskOne,
+                    anchorTaskTwo
+                )
+                .addTask(TASK_NAME_FIVE).afterTask(
+                    anchorTaskThree,
+                    anchorTaskFive
+                )
+                .setThreadPoolExecutor(TaskExecutorManager.instance.cpuThreadPoolExecutor)
+                .build()
+        project.addListener(object : OnProjectExecuteListener {
+            override fun onProjectStart() {
+                com.xj.anchortask.LogUtils.i(
+                    MyApplication.TAG,
+                    "onProjectStart "
+                )
+            }
+
+            override fun onTaskFinish(taskName: String) {
+                com.xj.anchortask.LogUtils.i(
+                    MyApplication.TAG,
+                    "onTaskFinish, taskName is $taskName"
+                )
+            }
+
+            override fun onProjectFinish() {
+                com.xj.anchortask.LogUtils.i(
+                    MyApplication.TAG,
+                    "onProjectFinish "
+                )
+            }
+
+        })
+        projectExecuteListener?.let {
+            project.addListener(it)
+        }
+        project.onGetMonitorRecordCallback = object : OnGetMonitorRecordCallback {
+            override fun onGetTaskExecuteRecord(result: Map<String?, Long?>?) {
+                onGetMonitorRecordCallback?.onGetTaskExecuteRecord(result)
+            }
+
+            override fun onGetProjectExecuteTime(costTime: Long) {
+                onGetMonitorRecordCallback?.onGetProjectExecuteTime(costTime)
+            }
+
+        }
+
+        project.start().await(1000)
+    }
 }

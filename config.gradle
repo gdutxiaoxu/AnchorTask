@@ -1,6 +1,6 @@
 ext {
     // Sdk and tools
-    anchorTaskPublicVersion = '1.0.0'
+    anchorTaskPublicVersion = '1.1.0'
     anchorTaskVersion = anchorTaskPublicVersion
 
 

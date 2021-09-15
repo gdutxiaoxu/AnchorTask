@@ -11,23 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".flowlayout.FlowLayoutDemo"></activity>
+        <activity
+            android:name=".asyncInflate.AsyncActivity"
+            android:exported="true" />
+        <activity android:name=".flowlayout.FlowLayoutDemo" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            tools:node="merge"></provider>
+            tools:node="merge" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".viewStub.ViewStubDemoActivity" />
-        <activity android:name=".anchorTask.AnchorTaskTestActivity"></activity>
+        <activity android:name=".anchorTask.AnchorTaskTestActivity" />
     </application>
 
 </manifest>

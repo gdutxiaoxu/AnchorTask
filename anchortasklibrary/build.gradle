@@ -3,7 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven'
 //apply plugin: 'com.novoda.bintray-release'
-apply plugin: 'com.github.panpf.bintray-publish'
+//apply plugin: 'com.github.panpf.bintray-publish'
+
 
 // 发布到本地仓库配置
 uploadArchives {
@@ -16,15 +17,15 @@ uploadArchives {
     }
 }
 
-
-publish {
-    userOrg = 'xujun94'
-    groupId = 'com.xj.android'
-    artifactId = 'anchortask'
-    publishVersion = "${anchorTaskPublicVersion}"
-    desc = 'anchortask'
-    website = 'https://github.com/gdutxiaoxu/anchortask'
-}
+//
+//publish {
+//    userOrg = 'xujun94'
+//    groupId = 'com.xj.android'
+//    artifactId = 'anchortask'
+//    publishVersion = "${anchorTaskPublicVersion}"
+//    desc = 'anchortask'
+//    website = 'https://github.com/gdutxiaoxu/anchortask'
+//}
 
 
 android {
@@ -63,3 +64,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
+
+
+ext {
+    PUBLISH_GROUP_ID = "com.xj.android"        //项目包名
+    PUBLISH_ARTIFACT_ID = 'anchortask'            //项目名
+    PUBLISH_VERSION = "${anchorTaskPublicVersion}"            //版本号
+}
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
+
+

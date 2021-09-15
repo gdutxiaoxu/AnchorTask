@@ -11,5 +11,6 @@ object LaunchInflateKey {
      * [R.layout.fragment_tabs]
      */
     const val LAUNCH_FRAGMENT_MAIN = "launch_fragment_main"
+    const val LAUNCH_ACTIVITY = "async_activity"
 
 }

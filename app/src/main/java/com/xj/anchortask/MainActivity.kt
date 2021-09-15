@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.xj.anchortask.anchorTask.AnchorTaskTestActivity
+import com.xj.anchortask.asyncInflate.AsyncActivity
+import com.xj.anchortask.asyncInflate.page.AsyncUtils
 import com.xj.anchortask.asyncInflate.page.AsyncUtils.isHomeFragmentOpen
 import com.xj.anchortask.flowlayout.FlowLayoutDemo
 import com.xj.anchortask.viewStub.ViewStubDemoActivity
@@ -28,8 +30,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, FlowLayoutDemo::class.java))
         }
 
+        btn_async.setOnClickListener {
+            startActivity(Intent(this@MainActivity, AsyncActivity::class.java))
+        }
 
-        val isOpen = isHomeFragmentOpen()
+
+        val isOpen = AsyncUtils.isHomeFragmentOpen()
         updateText(isOpen)
         switch_async.isChecked = isOpen
 

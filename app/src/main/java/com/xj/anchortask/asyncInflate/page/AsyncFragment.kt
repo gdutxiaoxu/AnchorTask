@@ -33,6 +33,8 @@ class AsyncFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+
     }
 
     override fun onCreateView(
@@ -44,20 +46,25 @@ class AsyncFragment : Fragment() {
         val homeFragmentOpen = AsyncUtils.isHomeFragmentOpen()
         val inflatedView: View
 
-        inflatedView = AsyncInflateManager.instance.getInflatedView(
-            context,
-            R.layout.fragment_asny,
-            container,
-            LAUNCH_FRAGMENT_MAIN,
-            inflater
-        )
+        val isOpen = AsyncUtils.isHomeFragmentOpen()
+        if (isOpen){
+            AsyncUtils.asyncInflate(context)
+        }
 
-        Log.i(
-            TAG,
-            "onCreateView: homeFragmentOpen is $homeFragmentOpen, timeInstance is ${System.currentTimeMillis() - startTime}, ${inflatedView.context}"
-        )
-        return inflatedView
-//        return inflater.inflate(R.layout.fragment_asny, container, false)
+//        inflatedView = AsyncInflateManager.instance.getInflatedView(
+//            context,
+//            R.layout.fragment_asny,
+//            container,
+//            LAUNCH_FRAGMENT_MAIN,
+//            inflater
+//        )
+//
+//        Log.i(
+//            TAG,
+//            "onCreateView: homeFragmentOpen is $homeFragmentOpen, timeInstance is ${System.currentTimeMillis() - startTime}, ${inflatedView.context}"
+//        )
+//        return inflatedView
+        return inflater.inflate(R.layout.fragment_asny, container, false)
     }
 
     companion object {

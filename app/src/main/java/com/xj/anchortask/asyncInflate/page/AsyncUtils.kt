@@ -12,7 +12,8 @@ import com.xj.anchortask.getSP
  */
 object AsyncUtils {
 
-    fun asyncInflate(context: Context) {
+    fun asyncInflate(context: Context?) {
+        context ?: return
         val asyncInflateItem =
             AsyncInflateItem(
                 LAUNCH_FRAGMENT_MAIN,

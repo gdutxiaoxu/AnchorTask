@@ -35,7 +35,7 @@ class MyApplication : Application() {
         super.onCreate()
         Log.i(TAG, "onCreate: ")
         myApplication = this
-        AsyncUtils.asyncInflate(applicationContext)
+
         TestTaskUtils.executeTask(this, projectExecuteListener = object : OnProjectExecuteListener {
             override fun onProjectFinish() {
 
