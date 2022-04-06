@@ -106,6 +106,7 @@ abstract class AnchorTask(private val name: String) : IAnchorTask {
         countDownLatch.await()
     }
 
+    @Synchronized
     private fun tryToInitCountDown() {
         if (!this::countDownLatch.isInitialized) {
             countDownLatch = CountDownLatch(dependList.size)
