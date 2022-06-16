@@ -22,7 +22,7 @@
 implementation 'io.github.gdutxiaoxu:anchortask:1.1.0'
 ```
 
-最新的版本号可以看这里 [lastedt version](https://dl.bintray.com/xujun94/maven/com/xj/android/anchortask/)
+最新的版本号可以看这里 [lastedt version](https://github.com/gdutxiaoxu/AnchorTask/tags)
 
 # 具体使用文档
 
